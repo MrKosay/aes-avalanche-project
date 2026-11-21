@@ -1,0 +1,2047 @@
+{
+  "schema_version": 1,
+  "algorithm": "AES-128",
+  "num_trials": 25,
+  "measurement_point": "after AddRoundKey",
+  "round_zero": "initial AddRoundKey, not a full round",
+  "verified_against_pycryptodome": true,
+  "measurements": [
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 1,
+      "changed_bits": 17,
+      "avalanche_percentage": 13.28125
+    },
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 2,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 3,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 4,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 5,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 6,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 7,
+      "changed_bits": 58,
+      "avalanche_percentage": 45.3125
+    },
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 8,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 9,
+      "changed_bits": 53,
+      "avalanche_percentage": 41.40625
+    },
+    {
+      "trial": 1,
+      "flipped_bit_index": 91,
+      "round": 10,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 1,
+      "changed_bits": 16,
+      "avalanche_percentage": 12.5
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 2,
+      "changed_bits": 68,
+      "avalanche_percentage": 53.125
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 3,
+      "changed_bits": 62,
+      "avalanche_percentage": 48.4375
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 4,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 5,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 6,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 7,
+      "changed_bits": 74,
+      "avalanche_percentage": 57.8125
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 8,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 9,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 2,
+      "flipped_bit_index": 10,
+      "round": 10,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 1,
+      "changed_bits": 19,
+      "avalanche_percentage": 14.84375
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 2,
+      "changed_bits": 75,
+      "avalanche_percentage": 58.59375
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 3,
+      "changed_bits": 62,
+      "avalanche_percentage": 48.4375
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 4,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 5,
+      "changed_bits": 62,
+      "avalanche_percentage": 48.4375
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 6,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 7,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 8,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 9,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 3,
+      "flipped_bit_index": 90,
+      "round": 10,
+      "changed_bits": 69,
+      "avalanche_percentage": 53.90625
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 1,
+      "changed_bits": 21,
+      "avalanche_percentage": 16.40625
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 2,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 3,
+      "changed_bits": 54,
+      "avalanche_percentage": 42.1875
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 4,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 5,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 6,
+      "changed_bits": 50,
+      "avalanche_percentage": 39.0625
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 7,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 8,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 9,
+      "changed_bits": 75,
+      "avalanche_percentage": 58.59375
+    },
+    {
+      "trial": 4,
+      "flipped_bit_index": 59,
+      "round": 10,
+      "changed_bits": 68,
+      "avalanche_percentage": 53.125
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 1,
+      "changed_bits": 17,
+      "avalanche_percentage": 13.28125
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 2,
+      "changed_bits": 77,
+      "avalanche_percentage": 60.15625
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 3,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 4,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 5,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 6,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 7,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 8,
+      "changed_bits": 73,
+      "avalanche_percentage": 57.03125
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 9,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 5,
+      "flipped_bit_index": 33,
+      "round": 10,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 1,
+      "changed_bits": 13,
+      "avalanche_percentage": 10.15625
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 2,
+      "changed_bits": 54,
+      "avalanche_percentage": 42.1875
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 3,
+      "changed_bits": 70,
+      "avalanche_percentage": 54.6875
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 4,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 5,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 6,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 7,
+      "changed_bits": 70,
+      "avalanche_percentage": 54.6875
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 8,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 9,
+      "changed_bits": 58,
+      "avalanche_percentage": 45.3125
+    },
+    {
+      "trial": 6,
+      "flipped_bit_index": 60,
+      "round": 10,
+      "changed_bits": 54,
+      "avalanche_percentage": 42.1875
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 1,
+      "changed_bits": 21,
+      "avalanche_percentage": 16.40625
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 2,
+      "changed_bits": 57,
+      "avalanche_percentage": 44.53125
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 3,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 4,
+      "changed_bits": 56,
+      "avalanche_percentage": 43.75
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 5,
+      "changed_bits": 56,
+      "avalanche_percentage": 43.75
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 6,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 7,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 8,
+      "changed_bits": 56,
+      "avalanche_percentage": 43.75
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 9,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 7,
+      "flipped_bit_index": 82,
+      "round": 10,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 1,
+      "changed_bits": 14,
+      "avalanche_percentage": 10.9375
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 2,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 3,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 4,
+      "changed_bits": 62,
+      "avalanche_percentage": 48.4375
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 5,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 6,
+      "changed_bits": 68,
+      "avalanche_percentage": 53.125
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 7,
+      "changed_bits": 72,
+      "avalanche_percentage": 56.25
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 8,
+      "changed_bits": 71,
+      "avalanche_percentage": 55.46875
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 9,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 8,
+      "flipped_bit_index": 108,
+      "round": 10,
+      "changed_bits": 68,
+      "avalanche_percentage": 53.125
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 1,
+      "changed_bits": 13,
+      "avalanche_percentage": 10.15625
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 2,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 3,
+      "changed_bits": 58,
+      "avalanche_percentage": 45.3125
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 4,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 5,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 6,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 7,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 8,
+      "changed_bits": 50,
+      "avalanche_percentage": 39.0625
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 9,
+      "changed_bits": 71,
+      "avalanche_percentage": 55.46875
+    },
+    {
+      "trial": 9,
+      "flipped_bit_index": 14,
+      "round": 10,
+      "changed_bits": 55,
+      "avalanche_percentage": 42.96875
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 1,
+      "changed_bits": 16,
+      "avalanche_percentage": 12.5
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 2,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 3,
+      "changed_bits": 71,
+      "avalanche_percentage": 55.46875
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 4,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 5,
+      "changed_bits": 73,
+      "avalanche_percentage": 57.03125
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 6,
+      "changed_bits": 55,
+      "avalanche_percentage": 42.96875
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 7,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 8,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 9,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 10,
+      "flipped_bit_index": 86,
+      "round": 10,
+      "changed_bits": 55,
+      "avalanche_percentage": 42.96875
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 1,
+      "changed_bits": 14,
+      "avalanche_percentage": 10.9375
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 2,
+      "changed_bits": 62,
+      "avalanche_percentage": 48.4375
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 3,
+      "changed_bits": 68,
+      "avalanche_percentage": 53.125
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 4,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 5,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 6,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 7,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 8,
+      "changed_bits": 56,
+      "avalanche_percentage": 43.75
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 9,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 11,
+      "flipped_bit_index": 36,
+      "round": 10,
+      "changed_bits": 69,
+      "avalanche_percentage": 53.90625
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 1,
+      "changed_bits": 18,
+      "avalanche_percentage": 14.0625
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 2,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 3,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 4,
+      "changed_bits": 55,
+      "avalanche_percentage": 42.96875
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 5,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 6,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 7,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 8,
+      "changed_bits": 54,
+      "avalanche_percentage": 42.1875
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 9,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 12,
+      "flipped_bit_index": 36,
+      "round": 10,
+      "changed_bits": 55,
+      "avalanche_percentage": 42.96875
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 1,
+      "changed_bits": 15,
+      "avalanche_percentage": 11.71875
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 2,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 3,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 4,
+      "changed_bits": 71,
+      "avalanche_percentage": 55.46875
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 5,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 6,
+      "changed_bits": 57,
+      "avalanche_percentage": 44.53125
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 7,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 8,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 9,
+      "changed_bits": 74,
+      "avalanche_percentage": 57.8125
+    },
+    {
+      "trial": 13,
+      "flipped_bit_index": 110,
+      "round": 10,
+      "changed_bits": 68,
+      "avalanche_percentage": 53.125
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 1,
+      "changed_bits": 10,
+      "avalanche_percentage": 7.8125
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 2,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 3,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 4,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 5,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 6,
+      "changed_bits": 62,
+      "avalanche_percentage": 48.4375
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 7,
+      "changed_bits": 73,
+      "avalanche_percentage": 57.03125
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 8,
+      "changed_bits": 57,
+      "avalanche_percentage": 44.53125
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 9,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 14,
+      "flipped_bit_index": 1,
+      "round": 10,
+      "changed_bits": 56,
+      "avalanche_percentage": 43.75
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 1,
+      "changed_bits": 13,
+      "avalanche_percentage": 10.15625
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 2,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 3,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 4,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 5,
+      "changed_bits": 54,
+      "avalanche_percentage": 42.1875
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 6,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 7,
+      "changed_bits": 74,
+      "avalanche_percentage": 57.8125
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 8,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 9,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 15,
+      "flipped_bit_index": 56,
+      "round": 10,
+      "changed_bits": 69,
+      "avalanche_percentage": 53.90625
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 1,
+      "changed_bits": 10,
+      "avalanche_percentage": 7.8125
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 2,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 3,
+      "changed_bits": 73,
+      "avalanche_percentage": 57.03125
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 4,
+      "changed_bits": 56,
+      "avalanche_percentage": 43.75
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 5,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 6,
+      "changed_bits": 68,
+      "avalanche_percentage": 53.125
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 7,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 8,
+      "changed_bits": 54,
+      "avalanche_percentage": 42.1875
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 9,
+      "changed_bits": 72,
+      "avalanche_percentage": 56.25
+    },
+    {
+      "trial": 16,
+      "flipped_bit_index": 115,
+      "round": 10,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 1,
+      "changed_bits": 20,
+      "avalanche_percentage": 15.625
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 2,
+      "changed_bits": 81,
+      "avalanche_percentage": 63.28125
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 3,
+      "changed_bits": 68,
+      "avalanche_percentage": 53.125
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 4,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 5,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 6,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 7,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 8,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 9,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 17,
+      "flipped_bit_index": 95,
+      "round": 10,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 1,
+      "changed_bits": 21,
+      "avalanche_percentage": 16.40625
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 2,
+      "changed_bits": 73,
+      "avalanche_percentage": 57.03125
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 3,
+      "changed_bits": 88,
+      "avalanche_percentage": 68.75
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 4,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 5,
+      "changed_bits": 53,
+      "avalanche_percentage": 41.40625
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 6,
+      "changed_bits": 62,
+      "avalanche_percentage": 48.4375
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 7,
+      "changed_bits": 51,
+      "avalanche_percentage": 39.84375
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 8,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 9,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 18,
+      "flipped_bit_index": 36,
+      "round": 10,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 1,
+      "changed_bits": 17,
+      "avalanche_percentage": 13.28125
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 2,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 3,
+      "changed_bits": 69,
+      "avalanche_percentage": 53.90625
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 4,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 5,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 6,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 7,
+      "changed_bits": 69,
+      "avalanche_percentage": 53.90625
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 8,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 9,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 19,
+      "flipped_bit_index": 50,
+      "round": 10,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 1,
+      "changed_bits": 18,
+      "avalanche_percentage": 14.0625
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 2,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 3,
+      "changed_bits": 56,
+      "avalanche_percentage": 43.75
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 4,
+      "changed_bits": 71,
+      "avalanche_percentage": 55.46875
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 5,
+      "changed_bits": 79,
+      "avalanche_percentage": 61.71875
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 6,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 7,
+      "changed_bits": 72,
+      "avalanche_percentage": 56.25
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 8,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 9,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 20,
+      "flipped_bit_index": 0,
+      "round": 10,
+      "changed_bits": 67,
+      "avalanche_percentage": 52.34375
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 1,
+      "changed_bits": 22,
+      "avalanche_percentage": 17.1875
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 2,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 3,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 4,
+      "changed_bits": 71,
+      "avalanche_percentage": 55.46875
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 5,
+      "changed_bits": 72,
+      "avalanche_percentage": 56.25
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 6,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 7,
+      "changed_bits": 57,
+      "avalanche_percentage": 44.53125
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 8,
+      "changed_bits": 61,
+      "avalanche_percentage": 47.65625
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 9,
+      "changed_bits": 62,
+      "avalanche_percentage": 48.4375
+    },
+    {
+      "trial": 21,
+      "flipped_bit_index": 35,
+      "round": 10,
+      "changed_bits": 59,
+      "avalanche_percentage": 46.09375
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 1,
+      "changed_bits": 20,
+      "avalanche_percentage": 15.625
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 2,
+      "changed_bits": 72,
+      "avalanche_percentage": 56.25
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 3,
+      "changed_bits": 75,
+      "avalanche_percentage": 58.59375
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 4,
+      "changed_bits": 69,
+      "avalanche_percentage": 53.90625
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 5,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 6,
+      "changed_bits": 62,
+      "avalanche_percentage": 48.4375
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 7,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 8,
+      "changed_bits": 72,
+      "avalanche_percentage": 56.25
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 9,
+      "changed_bits": 63,
+      "avalanche_percentage": 49.21875
+    },
+    {
+      "trial": 22,
+      "flipped_bit_index": 127,
+      "round": 10,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 1,
+      "changed_bits": 21,
+      "avalanche_percentage": 16.40625
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 2,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 3,
+      "changed_bits": 66,
+      "avalanche_percentage": 51.5625
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 4,
+      "changed_bits": 68,
+      "avalanche_percentage": 53.125
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 5,
+      "changed_bits": 69,
+      "avalanche_percentage": 53.90625
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 6,
+      "changed_bits": 55,
+      "avalanche_percentage": 42.96875
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 7,
+      "changed_bits": 73,
+      "avalanche_percentage": 57.03125
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 8,
+      "changed_bits": 69,
+      "avalanche_percentage": 53.90625
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 9,
+      "changed_bits": 74,
+      "avalanche_percentage": 57.8125
+    },
+    {
+      "trial": 23,
+      "flipped_bit_index": 124,
+      "round": 10,
+      "changed_bits": 75,
+      "avalanche_percentage": 58.59375
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 1,
+      "changed_bits": 17,
+      "avalanche_percentage": 13.28125
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 2,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 3,
+      "changed_bits": 69,
+      "avalanche_percentage": 53.90625
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 4,
+      "changed_bits": 55,
+      "avalanche_percentage": 42.96875
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 5,
+      "changed_bits": 54,
+      "avalanche_percentage": 42.1875
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 6,
+      "changed_bits": 55,
+      "avalanche_percentage": 42.96875
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 7,
+      "changed_bits": 65,
+      "avalanche_percentage": 50.78125
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 8,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 9,
+      "changed_bits": 76,
+      "avalanche_percentage": 59.375
+    },
+    {
+      "trial": 24,
+      "flipped_bit_index": 63,
+      "round": 10,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 0,
+      "changed_bits": 1,
+      "avalanche_percentage": 0.78125
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 1,
+      "changed_bits": 18,
+      "avalanche_percentage": 14.0625
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 2,
+      "changed_bits": 56,
+      "avalanche_percentage": 43.75
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 3,
+      "changed_bits": 76,
+      "avalanche_percentage": 59.375
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 4,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 5,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 6,
+      "changed_bits": 64,
+      "avalanche_percentage": 50.0
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 7,
+      "changed_bits": 60,
+      "avalanche_percentage": 46.875
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 8,
+      "changed_bits": 72,
+      "avalanche_percentage": 56.25
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 9,
+      "changed_bits": 54,
+      "avalanche_percentage": 42.1875
+    },
+    {
+      "trial": 25,
+      "flipped_bit_index": 25,
+      "round": 10,
+      "changed_bits": 62,
+      "avalanche_percentage": 48.4375
+    }
+  ],
+  "summary": [
+    {
+      "round": 0,
+      "num_trials": 25,
+      "mean_changed_bits": 1,
+      "mean_avalanche_percentage": 0.78125,
+      "sample_std_changed_bits": 0.0,
+      "sample_std_percentage_points": 0.0,
+      "min_changed_bits": 1,
+      "max_changed_bits": 1
+    },
+    {
+      "round": 1,
+      "num_trials": 25,
+      "mean_changed_bits": 16.84,
+      "mean_avalanche_percentage": 13.15625,
+      "sample_std_changed_bits": 3.4360830412937733,
+      "sample_std_percentage_points": 2.68443987601076,
+      "min_changed_bits": 10,
+      "max_changed_bits": 22
+    },
+    {
+      "round": 2,
+      "num_trials": 25,
+      "mean_changed_bits": 64.84,
+      "mean_avalanche_percentage": 50.65625,
+      "sample_std_changed_bits": 6.662582082045969,
+      "sample_std_percentage_points": 5.205142251598413,
+      "min_changed_bits": 54,
+      "max_changed_bits": 81
+    },
+    {
+      "round": 3,
+      "num_trials": 25,
+      "mean_changed_bits": 66.48,
+      "mean_avalanche_percentage": 51.9375,
+      "sample_std_changed_bits": 7.083549016324138,
+      "sample_std_percentage_points": 5.534022669003233,
+      "min_changed_bits": 54,
+      "max_changed_bits": 88
+    },
+    {
+      "round": 4,
+      "num_trials": 25,
+      "mean_changed_bits": 63.44,
+      "mean_avalanche_percentage": 49.5625,
+      "sample_std_changed_bits": 4.796526521001074,
+      "sample_std_percentage_points": 3.7472863445320894,
+      "min_changed_bits": 55,
+      "max_changed_bits": 71
+    },
+    {
+      "round": 5,
+      "num_trials": 25,
+      "mean_changed_bits": 63.8,
+      "mean_avalanche_percentage": 49.84375,
+      "sample_std_changed_bits": 6.144102863722254,
+      "sample_std_percentage_points": 4.800080362283011,
+      "min_changed_bits": 53,
+      "max_changed_bits": 79
+    },
+    {
+      "round": 6,
+      "num_trials": 25,
+      "mean_changed_bits": 61.84,
+      "mean_avalanche_percentage": 48.3125,
+      "sample_std_changed_bits": 4.579665198825492,
+      "sample_std_percentage_points": 3.577863436582416,
+      "min_changed_bits": 50,
+      "max_changed_bits": 68
+    },
+    {
+      "round": 7,
+      "num_trials": 25,
+      "mean_changed_bits": 64.96,
+      "mean_avalanche_percentage": 50.74999999999999,
+      "sample_std_changed_bits": 6.140575434490375,
+      "sample_std_percentage_points": 4.797324558195606,
+      "min_changed_bits": 51,
+      "max_changed_bits": 74
+    },
+    {
+      "round": 8,
+      "num_trials": 25,
+      "mean_changed_bits": 62.8,
+      "mean_avalanche_percentage": 49.0625,
+      "sample_std_changed_bits": 6.082762530298219,
+      "sample_std_percentage_points": 4.752158226795484,
+      "min_changed_bits": 50,
+      "max_changed_bits": 73
+    },
+    {
+      "round": 9,
+      "num_trials": 25,
+      "mean_changed_bits": 64.84,
+      "mean_avalanche_percentage": 50.65625,
+      "sample_std_changed_bits": 6.315853069855251,
+      "sample_std_percentage_points": 4.934260210824415,
+      "min_changed_bits": 53,
+      "max_changed_bits": 76
+    },
+    {
+      "round": 10,
+      "num_trials": 25,
+      "mean_changed_bits": 63.4,
+      "mean_avalanche_percentage": 49.53125,
+      "sample_std_changed_bits": 5.619905100029122,
+      "sample_std_percentage_points": 4.390550859397751,
+      "min_changed_bits": 54,
+      "max_changed_bits": 75
+    }
+  ]
+}
