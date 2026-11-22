@@ -1,13 +1,506 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AES Avalanche Lab</title><link rel="stylesheet" href="/static/style.css"><script src="/static/app.js" defer></script></head><body>
-<header><a class="brand" href="/">A<span>≋</span>S <b>AVALANCHE LAB</b></a><span class="badge" id="connection">Connecting…</span></header>
-<main><div class="eyebrow">EECE 455 · CRYPTOGRAPHY EXPERIMENTS</div><h1>A small change.<br><em>A different outcome.</em></h1><p class="intro">Explore how a single plaintext bit spreads through AES-128—from one encryption to a thousand experiments.</p>
-<nav role="tablist" aria-label="Experiments"><button role="tab" aria-selected="true" aria-controls="oracle" id="tab-oracle" data-tab="oracle">01 <span>Encryption oracle</span></button><button role="tab" aria-selected="false" aria-controls="rounds" id="tab-rounds" data-tab="rounds" tabindex="-1">02 <span>Round inspection</span></button><button role="tab" aria-selected="false" aria-controls="stats" id="tab-stats" data-tab="stats" tabindex="-1">03 <span>1,000-trial statistics</span></button></nav>
-<div id="error" role="alert" hidden></div>
-<section id="oracle" role="tabpanel" aria-labelledby="tab-oracle"><div class="section-title"><div><h2>One bit makes the difference</h2><p>Encrypt the original and modified blocks with the same key.</p></div><span class="pill">AES-128 / ONE BLOCK</span></div>
-<div class="layout"><article><h3>Experiment inputs</h3><form id="oracle-form"><label for="plain">Plaintext <small>16 bytes · hexadecimal</small></label><input id="plain" class="mono" required pattern="[0-9a-fA-F]{32}" maxlength="32" value="00112233445566778899aabbccddeeff"><label for="key">Shared key <small>16 bytes · hexadecimal</small></label><input id="key" class="mono" required pattern="[0-9a-fA-F]{32}" maxlength="32" value="000102030405060708090a0b0c0d0e0f"><label for="bit">Bit to flip <small>0 is the leftmost bit</small></label><div class="range"><input type="range" id="bit" min="0" max="127" value="0"><output id="bit-label">0</output></div><div class="actions"><button class="primary" id="compare" type="submit">Encrypt & compare ↗</button><button type="button" id="random-oracle">Random inputs</button></div></form><p class="note">Encryption comparison uses a working reference adapter. Your teammate’s full encryption/decryption oracle will connect here later.</p><button disabled title="Your teammate's decryption module will be integrated later">Decryption · coming with teammate module</button></article>
-<article><h3>Comparison result</h3><div id="oracle-empty" class="empty">Run an encryption to compare both ciphertexts.</div><div id="oracle-result" hidden><div id="pair-metrics" class="metrics"></div><dl id="pair-values"></dl><div class="actions"><button id="inspect-pair" class="primary">Inspect these rounds →</button></div><h4>Ciphertext XOR difference</h4><div class="bits" id="pair-bits"></div><small>Amber = changed. Dark = unchanged.</small></div></article></div></section>
-<section id="rounds" role="tabpanel" aria-labelledby="tab-rounds" hidden><div class="section-title"><div><h2>Follow the difference through AES</h2><p>Compare identical checkpoints in the two encryptions.</p></div><span class="pill" id="round-source">INDEPENDENT INPUTS</span></div>
-<article><form id="round-form" class="inline-form"><div><label for="round-plain">Plaintext · hex</label><input id="round-plain" class="mono" required pattern="[0-9a-fA-F]{32}" maxlength="32" value="00112233445566778899aabbccddeeff"></div><div><label for="round-key">Key · hex</label><input id="round-key" class="mono" required pattern="[0-9a-fA-F]{32}" maxlength="32" value="000102030405060708090a0b0c0d0e0f"></div><div><label for="round-bit">Bit index</label><input id="round-bit" type="number" min="0" max="127" step="1" value="0" required></div><button class="primary" id="run-rounds">Inspect rounds</button></form></article>
-<div class="empty" id="round-empty">Inspect a pair here or send one from the oracle tab.</div><div id="round-result" hidden><article><div class="section-title"><h3>Round progression</h3><button id="download-rounds">Download JSON ↓</button></div><div id="round-chart"></div><small>Measured after AddRoundKey. Round 0 is the initial key addition. The dashed line is 50%.</small></article><article><div class="section-title"><h3 id="step-title">Input</h3><span class="pill" id="step-count"></span></div><div class="step-controls"><button id="previous">← Previous</button><input id="step" aria-label="Transformation step" type="range" min="0" max="40" value="0"><button id="next">Next →</button></div><p id="step-explanation"></p><div class="metrics" id="step-metrics"></div><div class="matrix-layout"><div><h4>Original state</h4><div class="matrix" id="matrix-a"></div></div><div><h4>Modified state</h4><div class="matrix" id="matrix-b"></div></div><div><h4>XOR difference</h4><div class="matrix" id="matrix-x"></div></div></div><p class="note">Each cell is one byte in hexadecimal. AES fills columns top to bottom. Highlighted cells differ between the two states.</p><h4>128-bit difference</h4><div class="bits" id="step-bits"></div></article></div></section>
-<section id="stats" role="tabpanel" aria-labelledby="tab-stats" hidden><div class="section-title"><div><h2>From one experiment to evidence</h2><p>1,000 fresh plaintext/key pairs. One randomly selected input bit flipped per pair.</p></div><button class="primary" id="run-stats">Run 1,000 trials ↗</button></div><p id="stats-status" role="status" aria-live="polite">Ready to run. Results stay in this session until downloaded.</p><div id="stats-result" hidden><div class="metrics" id="stats-metrics"></div><div class="two-col"><article><h3>Avalanche distribution</h3><div id="hist-chart"></div></article><article><h3>Running average</h3><div id="average-chart"></div></article></div><article><h3>Output-bit change frequency</h3><div id="frequency-chart"></div><p class="note">Frequency pooled over randomly chosen input positions; this is not a full strict avalanche criterion test.</p></article><article><div class="section-title"><h3>Explore individual trials</h3><div><button id="download-csv">Download CSV ↓</button> <button id="download-stats">Download JSON ↓</button></div></div><label for="trial-number">Trial number</label><input id="trial-number" type="number" min="1" max="1000" value="1"><p id="trial-info"></p><dl id="trial-values"></dl><div class="bits" id="trial-bits"></div><button id="inspect-trial">Inspect this trial’s rounds →</button></article></div></section>
-<footer>128-bit blocks · same key within each comparison · bit indices start at 0<br>An average near 50% illustrates avalanche behavior; it does not prove cryptographic security. <a href="/docs" target="_blank" rel="noopener">API documentation ↗</a></footer></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AES Avalanche Lab</title>
+
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/style.css?v=2">
+  <script src="/static/app.js?v=2" defer></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span>AES</span> Avalanche Lab
+    </a>
+
+    <span class="connection" id="connection">Connecting…</span>
+  </header>
+
+  <main>
+    <nav class="tabs" role="tablist" aria-label="Experiment sections">
+      <button
+        id="tab-oracle"
+        role="tab"
+        aria-selected="true"
+        aria-controls="oracle"
+        data-tab="oracle"
+      >
+        <span class="tab-number">01</span>
+        Encryption oracle
+      </button>
+
+      <button
+        id="tab-rounds"
+        role="tab"
+        aria-selected="false"
+        aria-controls="rounds"
+        data-tab="rounds"
+        tabindex="-1"
+      >
+        <span class="tab-number">02</span>
+        Round inspection
+      </button>
+
+      <button
+        id="tab-stats"
+        role="tab"
+        aria-selected="false"
+        aria-controls="stats"
+        data-tab="stats"
+        tabindex="-1"
+      >
+        <span class="tab-number">03</span>
+        1,000 trials
+      </button>
+    </nav>
+
+    <div id="error" class="error" role="alert" hidden></div>
+
+    <!-- TAB 1 -->
+    <section
+      id="oracle"
+      role="tabpanel"
+      aria-labelledby="tab-oracle"
+    >
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">ENCRYPTION COMPARISON</div>
+          <h1>One bit. A different ciphertext.</h1>
+          <p>
+            Encrypt an original plaintext and its modified version
+            using the same AES-128 key.
+          </p>
+        </div>
+
+        <span class="badge">AES-128 · 16-BYTE BLOCK</span>
+      </div>
+
+      <div class="oracle-layout">
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Experiment inputs</h2>
+            <span class="subtle-label">HEX</span>
+          </div>
+
+          <form id="oracle-form">
+            <label for="plain">
+              Plaintext
+              <small>32 hexadecimal characters</small>
+            </label>
+
+            <input
+              id="plain"
+              class="mono"
+              value="00112233445566778899aabbccddeeff"
+              pattern="[0-9a-fA-F]{32}"
+              maxlength="32"
+              autocomplete="off"
+              spellcheck="false"
+              required
+            >
+
+            <label for="key">
+              Shared key
+              <small>32 hexadecimal characters</small>
+            </label>
+
+            <input
+              id="key"
+              class="mono"
+              value="000102030405060708090a0b0c0d0e0f"
+              pattern="[0-9a-fA-F]{32}"
+              maxlength="32"
+              autocomplete="off"
+              spellcheck="false"
+              required
+            >
+
+            <label for="bit">
+              Plaintext bit to flip
+              <small>0 = leftmost bit</small>
+            </label>
+
+            <div class="range-row">
+              <input
+                id="bit"
+                type="range"
+                min="0"
+                max="127"
+                value="0"
+              >
+              <output id="bit-label">0</output>
+            </div>
+
+            <div class="actions">
+              <button id="compare" class="primary" type="submit">
+                Encrypt & compare
+              </button>
+
+              <button id="random-oracle" type="button">
+                Random inputs
+              </button>
+            </div>
+          </form>
+
+          <div class="integration-note">
+            <span class="status-dot"></span>
+            Encryption comparison is connected.
+            Your teammate’s decryption module will be integrated later.
+          </div>
+
+          <button class="pending-button" disabled>
+            Decryption · pending integration
+          </button>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Comparison result</h2>
+            <span class="subtle-label">SAME KEY</span>
+          </div>
+
+          <div id="oracle-empty" class="empty-state">
+            <span class="empty-symbol">⊕</span>
+            Run an experiment to see how one bit changes the output.
+          </div>
+
+          <div id="oracle-result" hidden>
+            <div id="pair-metrics" class="metrics"></div>
+            <dl id="pair-values" class="hex-values"></dl>
+
+            <h3>Ciphertext XOR difference</h3>
+            <div id="pair-bits" class="bits"></div>
+
+            <div class="legend">
+              <span><i class="swatch unchanged"></i> Unchanged bit</span>
+              <span><i class="swatch changed"></i> Changed bit</span>
+            </div>
+
+            <div class="actions">
+              <button id="inspect-pair" class="primary">
+                Inspect these rounds →
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TAB 2 -->
+    <section
+      id="rounds"
+      role="tabpanel"
+      aria-labelledby="tab-rounds"
+      hidden
+    >
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">INSIDE THE CIPHER</div>
+          <h1>Follow a single bit through AES.</h1>
+          <p>
+            Compare the original and modified states after each
+            transformation.
+          </p>
+        </div>
+
+        <span class="badge" id="round-source">INDEPENDENT INPUTS</span>
+      </div>
+
+      <article class="panel">
+        <form id="round-form" class="round-inputs">
+          <div>
+            <label for="round-plain">Plaintext · hex</label>
+            <input
+              id="round-plain"
+              class="mono"
+              value="00112233445566778899aabbccddeeff"
+              pattern="[0-9a-fA-F]{32}"
+              maxlength="32"
+              autocomplete="off"
+              spellcheck="false"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="round-key">Shared key · hex</label>
+            <input
+              id="round-key"
+              class="mono"
+              value="000102030405060708090a0b0c0d0e0f"
+              pattern="[0-9a-fA-F]{32}"
+              maxlength="32"
+              autocomplete="off"
+              spellcheck="false"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="round-bit">Bit index</label>
+            <input
+              id="round-bit"
+              type="number"
+              min="0"
+              max="127"
+              step="1"
+              value="0"
+              required
+            >
+          </div>
+
+          <button id="run-rounds" class="primary" type="submit">
+            Inspect rounds
+          </button>
+        </form>
+      </article>
+
+      <div id="round-empty" class="empty-state panel">
+        <span class="empty-symbol">⌘</span>
+        Enter inputs here or inspect a pair from the oracle tab.
+      </div>
+
+      <div id="round-result" hidden>
+        <article class="panel">
+          <div class="round-toolbar">
+            <div class="transformations" aria-label="AES transformations">
+              <button type="button" data-operation="SubBytes">
+                SubBytes
+              </button>
+              <span>→</span>
+              <button type="button" data-operation="ShiftRows">
+                ShiftRows
+              </button>
+              <span>→</span>
+              <button type="button" data-operation="MixColumns">
+                MixColumns
+              </button>
+              <span>→</span>
+              <button type="button" data-operation="AddRoundKey">
+                AddRoundKey
+              </button>
+            </div>
+
+            <div class="round-choice">
+              <label for="round-select">Checkpoint</label>
+              <select id="round-select">
+                <option value="-1">Input plaintext</option>
+                <option value="0">Initial AddRoundKey</option>
+                <option value="1">Round 1 / 10</option>
+                <option value="2">Round 2 / 10</option>
+                <option value="3">Round 3 / 10</option>
+                <option value="4">Round 4 / 10</option>
+                <option value="5">Round 5 / 10</option>
+                <option value="6">Round 6 / 10</option>
+                <option value="7">Round 7 / 10</option>
+                <option value="8">Round 8 / 10</option>
+                <option value="9">Round 9 / 10</option>
+                <option value="10">Round 10 / 10</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="step-heading">
+            <h2 id="step-title">Input plaintext</h2>
+            <span id="step-count" class="subtle-label"></span>
+          </div>
+
+          <div class="step-controls">
+            <button id="previous" type="button">← Previous</button>
+
+            <input
+              id="step"
+              type="range"
+              min="0"
+              max="40"
+              value="0"
+              aria-label="Transformation step"
+            >
+
+            <button id="next" type="button">Next →</button>
+          </div>
+
+          <p id="step-explanation" class="explanation"></p>
+        </article>
+
+        <div class="matrix-layout">
+          <article class="panel matrix-panel original-panel">
+            <div class="panel-heading">
+              <h2>Original state</h2>
+              <span class="subtle-label">A</span>
+            </div>
+            <p class="panel-description">AES state without the bit flip</p>
+            <div id="matrix-a" class="matrix"></div>
+          </article>
+
+          <article class="panel matrix-panel modified-panel">
+            <div class="panel-heading">
+              <h2>Modified state</h2>
+              <span class="subtle-label">B</span>
+            </div>
+            <p class="panel-description">AES state with one input bit flipped</p>
+            <div id="matrix-b" class="matrix"></div>
+          </article>
+
+          <article class="panel matrix-panel xor-panel">
+            <div class="panel-heading">
+              <h2>XOR difference</h2>
+              <span class="subtle-label">A ⊕ B</span>
+            </div>
+            <p class="panel-description">00 means the bytes are identical</p>
+            <div id="matrix-x" class="matrix"></div>
+          </article>
+        </div>
+
+        <div class="round-bottom">
+          <article class="panel">
+            <div class="panel-heading">
+              <h2>Avalanche by round</h2>
+              <button id="download-rounds" class="small-button">
+                Download JSON ↓
+              </button>
+            </div>
+
+            <div id="round-chart"></div>
+
+            <p class="note">
+              Measurements are taken after AddRoundKey.
+              Round 0 is the initial key addition.
+              The dashed line marks 50%.
+            </p>
+          </article>
+
+          <article class="panel">
+            <h2>Current checkpoint</h2>
+            <div id="step-metrics" class="metrics stacked"></div>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>128-bit difference</h2>
+            <span class="subtle-label">MSB FIRST</span>
+          </div>
+
+          <div id="step-bits" class="bits"></div>
+
+          <div class="legend">
+            <span><i class="swatch unchanged"></i> Unchanged</span>
+            <span><i class="swatch changed"></i> Changed</span>
+          </div>
+
+          <p class="note">
+            Each matrix cell represents one hexadecimal byte.
+            AES fills columns from top to bottom.
+            Hover over cells or bits to see their positions.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TAB 3 -->
+    <section
+      id="stats"
+      role="tabpanel"
+      aria-labelledby="tab-stats"
+      hidden
+    >
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">STATISTICAL ANALYSIS</div>
+          <h1>One thousand experiments.</h1>
+          <p>
+            Fresh random plaintexts and keys.
+            Exactly one plaintext bit flipped in each comparison.
+          </p>
+        </div>
+
+        <button id="run-stats" class="primary">
+          Run 1,000 trials
+        </button>
+      </div>
+
+      <p id="stats-status" class="note" role="status" aria-live="polite">
+        Ready to run. Download results to keep them after closing this page.
+      </p>
+
+      <div id="stats-result" hidden>
+        <div id="stats-metrics" class="metrics"></div>
+
+        <div class="two-column">
+          <article class="panel">
+            <h2>Avalanche distribution</h2>
+            <div id="hist-chart"></div>
+          </article>
+
+          <article class="panel">
+            <h2>Running average</h2>
+            <div id="average-chart"></div>
+          </article>
+        </div>
+
+        <article class="panel">
+          <h2>Output-bit change frequency</h2>
+          <div id="frequency-chart"></div>
+
+          <p class="note">
+            Frequencies are pooled across randomly selected input-bit
+            positions. This is not a full strict avalanche criterion test.
+          </p>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Explore a trial</h2>
+
+            <div class="actions compact">
+              <button id="download-csv">Download CSV ↓</button>
+              <button id="download-stats">Download JSON ↓</button>
+            </div>
+          </div>
+
+          <label for="trial-number">Trial number</label>
+          <input
+            id="trial-number"
+            type="number"
+            min="1"
+            max="1000"
+            step="1"
+            value="1"
+          >
+
+          <p id="trial-info" class="explanation"></p>
+          <dl id="trial-values" class="hex-values"></dl>
+
+          <h3>Ciphertext XOR difference</h3>
+          <div id="trial-bits" class="bits"></div>
+
+          <div class="actions">
+            <button id="inspect-trial" class="primary">
+              Inspect this trial’s rounds →
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <span>
+        AES-128 · 128-bit blocks · same key within each comparison
+      </span>
+
+      <a href="/docs" target="_blank" rel="noopener">
+        API documentation ↗
+      </a>
+
+      <p>
+        Avalanche measurements illustrate diffusion.
+        They do not establish cryptographic security.
+      </p>
+    </footer>
+  </main>
+</body>
+</html>
