@@ -5,7 +5,8 @@ from statistics import mean, stdev
 from typing import Annotated
 
 from Crypto.Cipher import AES
-from fastapi import APIRouter, FastAPI
+from fastapi import APIRouter, FastAPI, HTTPException
+from Crypto.Util.Padding import pad, unpad
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
@@ -25,15 +26,26 @@ class PairRequest(BaseModel):
     key: HexBlock
     bit_index: Annotated[int, Field(strict=True, ge=0, le=127)] = 0
 
+class TextRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    text: str
+    key: HexBlock
+    bit_index: Annotated[int, Field(strict=True, ge=0, le=119)] = 0
+
+
 class DecryptRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     ciphertext: HexBlock
     key: HexBlock
+    padded: bool = False
 
 
 class DecryptResponse(BaseModel):
     plaintext: str
+    message_hex: str
+    text: str | None
+    valid_utf8: bool
 
 class BatchRequest(BaseModel):
     model_config = ConfigDict(extra='forbid')
@@ -71,11 +83,40 @@ def compare(request: PairRequest):
 
 app = FastAPI(title='AES Avalanche Lab', version='1.0.0')
 
+@oracle.post("/compare-text")
+def compare_text(request: TextRequest):
+    try:
+        message = request.text.encode("utf-8")
+    except UnicodeEncodeError:
+        raise HTTPException(422, "Text must contain valid Unicode characters.")
+    if not 1 <= len(message) <= 15:
+        raise HTTPException(422, "Enter 1–15 UTF-8 bytes of text.")
+    if request.bit_index >= len(message) * 8:
+        raise HTTPException(422, "Select a bit belonging to the message, not padding.")
+    block = pad(message, 16)
+    result = compare(PairRequest(plaintext=block.hex(), key=request.key,
+                                 bit_index=request.bit_index))
+    result.update(input_mode="text", text=request.text, message_bytes=len(message),
+                  padding_bytes=16-len(message))
+    return result
+
+
 @oracle.post("/decrypt", response_model=DecryptResponse)
 def decrypt(request: DecryptRequest):
     plaintext = decrypt_block(request.ciphertext, request.key)
+    message = bytes.fromhex(plaintext)
+    if request.padded:
+        try:
+            message = unpad(message, 16)
+        except ValueError:
+            raise HTTPException(422, "Invalid PKCS#7 padding. Check the key and ciphertext, or select raw hex mode.")
+    try:
+        text = message.decode("utf-8")
+    except UnicodeDecodeError:
+        text = None
+    return {"plaintext": plaintext, "message_hex": message.hex(),
+            "text": text, "valid_utf8": text is not None}
 
-    return {"plaintext": plaintext}
 app.include_router(oracle)
 
 

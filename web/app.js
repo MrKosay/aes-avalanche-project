@@ -259,7 +259,10 @@ function renderBits(containerId, bits) {
 }
 
 /* ---------------- Oracle ---------------- */
-
+function hexToBase64(hex) {
+  const bytes = hex.match(/.{2}/g).map(byte => parseInt(byte, 16));
+  return btoa(String.fromCharCode(...bytes));
+}
 function renderPair(result) {
   $("oracle-empty").hidden = true;
   $("oracle-result").hidden = false;
@@ -269,29 +272,76 @@ function renderPair(result) {
     ["Avalanche percentage", `${result.avalanche_percentage.toFixed(2)}%`]
   ]);
 
-  renderValues("pair-values", {
-    "Original plaintext": result.plaintext,
-    "Modified plaintext": result.modified_plaintext,
-    "Original ciphertext": result.ciphertext,
-    "Modified ciphertext": result.modified_ciphertext
+  const values = {};
+
+  if (result.input_mode === "text") {
+    function decodeMessage(hex) {
+      const bytes = Uint8Array.from(
+        hex.match(/.{2}/g),
+        byte => parseInt(byte, 16)
+      );
+
+      try {
+        return new TextDecoder("utf-8", { fatal: true })
+          .decode(bytes.slice(0, result.message_bytes));
+      } catch {
+        return "Not valid UTF-8 after the bit flip — see hex below.";
+      }
+    }
+
+    values["Original plaintext · text"] = result.text;
+    values["Modified plaintext · text"] =
+      decodeMessage(result.modified_plaintext);
+  }
+
+  Object.assign(values, {
+    "Original plaintext · hex": result.plaintext,
+    "Modified plaintext · hex": result.modified_plaintext,
+    "Original ciphertext · hex": result.ciphertext,
+    "Original ciphertext · Base64": hexToBase64(result.ciphertext),
+    "Modified ciphertext · hex": result.modified_ciphertext,
+    "Modified ciphertext · Base64": hexToBase64(result.modified_ciphertext)
   });
+
+  renderValues("pair-values", values);
 
   renderBits(
     "pair-bits",
     xorBits(result.ciphertext, result.modified_ciphertext)
   );
 }
+/* ---------------- Encryption actions ---------------- */
 
 $("oracle-form").addEventListener("submit", event => {
   event.preventDefault();
 
   busy("compare", async () => {
-    const input = getPayload();
+    const textMode = $("input-mode").value === "text";
 
-    validatePayload(input);
+    const input = textMode
+      ? {
+          text: $("plain").value,
+          key: $("key").value.trim(),
+          bit_index: Number($("bit").value)
+        }
+      : getPayload();
+
+    if (!textMode) {
+      validatePayload(input);
+    } else if (!/^[0-9a-f]{32}$/i.test(input.key)) {
+      throw new Error(
+        "Key must contain exactly 32 hexadecimal characters."
+      );
+    }
 
     const revision = ++oracleRevision;
-    const result = await api("/api/oracle/compare", input);
+
+    const result = await api(
+      textMode
+        ? "/api/oracle/compare-text"
+        : "/api/oracle/compare",
+      input
+    );
 
     if (revision !== oracleRevision) return;
 
@@ -309,11 +359,13 @@ $("random-oracle").addEventListener("click", () => {
 
     clearPair();
 
+    $("input-mode").value = "hex";
+    updatePlaintextMode();
+
     $("plain").value = result.plaintext;
     $("key").value = result.key;
   });
 });
-
 /* ---------------- Round inspection ---------------- */
 
 async function sendToRounds(result, origin) {
@@ -989,6 +1041,7 @@ api("/api/health")
 function clearDecryption() {
   $("decrypt-result").hidden = true;
   $("decrypted-plaintext").textContent = "";
+  $("decrypted-text").textContent = "";
 }
 
 ["decrypt-ciphertext", "decrypt-key"].forEach(id => {
@@ -1013,20 +1066,21 @@ $("decrypt-form").addEventListener("submit", event => {
       );
     }
 
-    const result = await api("/api/oracle/decrypt", {
-      ciphertext,
-      key
-    });
+    const padded = $("decrypt-padding").value === "pkcs7";
+    const result = await api("/api/oracle/decrypt", {ciphertext, key, padded});
 
     // Ignore the response if inputs changed while it was running.
     if (
       $("decrypt-ciphertext").value.trim() !== ciphertext ||
-      $("decrypt-key").value.trim() !== key
+      $("decrypt-key").value.trim() !== key ||
+      ($("decrypt-padding").value === "pkcs7") !== padded
     ) {
       return;
     }
 
     $("decrypted-plaintext").textContent = result.plaintext;
+    $("decrypted-text").textContent = result.valid_utf8
+      ? result.text : "These bytes are not valid UTF-8. Use the hexadecimal result above.";
     $("decrypt-result").hidden = false;
   });
 });
@@ -1045,6 +1099,7 @@ function fillDecryption(useModified) {
     : pair.ciphertext;
 
   $("decrypt-key").value = pair.key;
+  $("decrypt-padding").value = pair.input_mode === "text" ? "pkcs7" : "raw";
 }
 
 $("use-original-ciphertext").addEventListener("click", () => {
@@ -1154,3 +1209,30 @@ new MutationObserver(() => {
   attributes: true,
   attributeFilter: ["hidden"]
 });
+/* Text input remains byte-based for the avalanche experiment. */
+function updatePlaintextMode(reset = true) {
+  const textMode = $("input-mode").value === "text";
+  const plain = $("plain");
+  if (reset) plain.value = textMode ? "Hello AES!" : "00112233445566778899aabbccddeeff";
+  plain.removeAttribute("maxlength");
+  plain.removeAttribute("pattern");
+  plain.setCustomValidity("");
+  document.querySelector('label[for="plain"] small').textContent = textMode
+    ? "1–15 UTF-8 bytes" : "32 hexadecimal characters";
+  $("text-byte-count").hidden = !textMode;
+  if (textMode) {
+    const count = new TextEncoder().encode(plain.value).length;
+    $("text-byte-count").textContent = `${count}/15 UTF-8 bytes · ${count >= 1 && count <= 15 ? 16-count : "—"} padding bytes. Bit selection excludes padding.`;
+    if (count < 1 || count > 15) plain.setCustomValidity("Enter 1–15 UTF-8 bytes. Arabic letters and emoji can use multiple bytes.");
+    $("bit").max = Math.max(0, Math.min(count,15)*8-1);
+  } else {
+    plain.maxLength = 32;
+    plain.pattern = "[0-9a-fA-F]{32}";
+    $("bit").max = 127;
+  }
+  $("bit-label").textContent = $("bit").value;
+}
+$("input-mode").addEventListener("change", () => { clearPair(); updatePlaintextMode(); });
+$("plain").addEventListener("input", () => updatePlaintextMode(false));
+$("decrypt-padding").addEventListener("change", clearDecryption);
+updatePlaintextMode(false);
