@@ -29,7 +29,7 @@
         data-tab="oracle"
       >
         <span class="tab-number">01</span>
-        Encryption oracle
+        Encryption / Decryption Oracles
       </button>
 
       <button
@@ -145,16 +145,67 @@
             </div>
           </form>
 
-          <div class="integration-note">
-            <span class="status-dot"></span>
-            Encryption comparison is connected.
-            Your teammate’s decryption module will be integrated later.
-          </div>
+      <h3>Decrypt a ciphertext</h3>
 
-          <button class="pending-button" disabled>
-            Decryption · pending integration
+      <form id="decrypt-form">
+        <label for="decrypt-ciphertext">
+          Ciphertext
+          <small>32 hexadecimal characters</small>
+        </label>
+
+        <input
+          id="decrypt-ciphertext"
+          class="mono"
+          pattern="[0-9a-fA-F]{32}"
+          maxlength="32"
+          autocomplete="off"
+          spellcheck="false"
+          required
+        >
+
+        <label for="decrypt-key">
+          Decryption key
+          <small>Same key used for encryption</small>
+        </label>
+
+        <input
+          id="decrypt-key"
+          class="mono"
+          pattern="[0-9a-fA-F]{32}"
+          maxlength="32"
+          autocomplete="off"
+          spellcheck="false"
+          required
+        >
+
+        <div class="actions">
+          <button id="decrypt-button" class="primary" type="submit">
+            Decrypt
           </button>
+
+          <button id="use-original-ciphertext" type="button">
+            Use original ciphertext
+          </button>
+
+          <button id="use-modified-ciphertext" type="button">
+            Use modified ciphertext
+          </button>
+        </div>
+      </form>
+
+      <div id="decrypt-result" hidden>
+        <h3>Recovered plaintext · hexadecimal</h3>
+        <dl class="hex-values">
+          <dt>Decrypted block</dt>
+          <dd id="decrypted-plaintext"></dd>
+        </dl>
+      </div>
+
         </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Comparison result</h2>
 
         <article class="panel">
           <div class="panel-heading">
