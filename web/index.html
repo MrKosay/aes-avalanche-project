@@ -6,8 +6,8 @@
   <title>AES Avalanche Lab</title>
 
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="/static/style.css?v=2">
-  <script src="/static/app.js?v=2" defer></script>
+  <link rel="stylesheet" href="/static/style.css?v=3">
+  <script src="/static/app.js?v=3" defer></script>
 </head>
 
 <body>
@@ -86,6 +86,12 @@
           </div>
 
           <form id="oracle-form">
+            <label for="input-mode">Plaintext format</label>
+            <select id="input-mode">
+              <option value="hex">Hex · one raw block</option>
+              <option value="text">Text · UTF-8 with PKCS#7 padding</option>
+            </select>
+            <p id="text-byte-count" class="note" aria-live="polite" hidden></p>
             <label for="plain">
               Plaintext
               <small>32 hexadecimal characters</small>
@@ -148,6 +154,11 @@
       <h3>Decrypt a ciphertext</h3>
 
       <form id="decrypt-form">
+        <label for="decrypt-padding">Ciphertext format</label>
+        <select id="decrypt-padding">
+          <option value="raw">Raw block · no padding</option>
+          <option value="pkcs7">Text experiment · remove PKCS#7 padding</option>
+        </select>
         <label for="decrypt-ciphertext">
           Ciphertext
           <small>32 hexadecimal characters</small>
@@ -198,14 +209,12 @@
         <dl class="hex-values">
           <dt>Decrypted block</dt>
           <dd id="decrypted-plaintext"></dd>
+          <dt>Recovered text · UTF-8</dt>
+          <dd id="decrypted-text" class="recovered-text"></dd>
         </dl>
       </div>
 
         </article>
-
-        <article class="panel">
-          <div class="panel-heading">
-            <h2>Comparison result</h2>
 
         <article class="panel">
           <div class="panel-heading">
