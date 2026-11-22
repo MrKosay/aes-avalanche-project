@@ -13,6 +13,8 @@ from pydantic import BaseModel, ConfigDict, Field
 from avalanche import flip_bit, hamming_distance, run_experiments
 from aes_round_backend.aes_rounds import inspect_pair
 
+from aes_oracle import decrypt_block
+
 ROOT = Path(__file__).resolve().parent
 HexBlock = Annotated[str, Field(pattern=r'^[0-9a-fA-F]{32}$')]
 
@@ -23,6 +25,15 @@ class PairRequest(BaseModel):
     key: HexBlock
     bit_index: Annotated[int, Field(strict=True, ge=0, le=127)] = 0
 
+class DecryptRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    ciphertext: HexBlock
+    key: HexBlock
+
+
+class DecryptResponse(BaseModel):
+    plaintext: str
 
 class BatchRequest(BaseModel):
     model_config = ConfigDict(extra='forbid')
@@ -59,6 +70,12 @@ def compare(request: PairRequest):
 
 
 app = FastAPI(title='AES Avalanche Lab', version='1.0.0')
+
+@oracle.post("/decrypt", response_model=DecryptResponse)
+def decrypt(request: DecryptRequest):
+    plaintext = decrypt_block(request.ciphertext, request.key)
+
+    return {"plaintext": plaintext}
 app.include_router(oracle)
 
 

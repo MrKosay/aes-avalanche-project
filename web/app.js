@@ -983,3 +983,174 @@ api("/api/health")
       "Do not open index.html directly."
     );
   });
+
+  /* ---------------- Decryption ---------------- */
+
+function clearDecryption() {
+  $("decrypt-result").hidden = true;
+  $("decrypted-plaintext").textContent = "";
+}
+
+["decrypt-ciphertext", "decrypt-key"].forEach(id => {
+  $(id).addEventListener("input", clearDecryption);
+});
+
+$("decrypt-form").addEventListener("submit", event => {
+  event.preventDefault();
+
+  busy("decrypt-button", async () => {
+    clearDecryption();
+
+    const ciphertext = $("decrypt-ciphertext").value.trim();
+    const key = $("decrypt-key").value.trim();
+
+    if (
+      !/^[0-9a-f]{32}$/i.test(ciphertext) ||
+      !/^[0-9a-f]{32}$/i.test(key)
+    ) {
+      throw new Error(
+        "Ciphertext and key must each contain exactly 32 hexadecimal characters."
+      );
+    }
+
+    const result = await api("/api/oracle/decrypt", {
+      ciphertext,
+      key
+    });
+
+    // Ignore the response if inputs changed while it was running.
+    if (
+      $("decrypt-ciphertext").value.trim() !== ciphertext ||
+      $("decrypt-key").value.trim() !== key
+    ) {
+      return;
+    }
+
+    $("decrypted-plaintext").textContent = result.plaintext;
+    $("decrypt-result").hidden = false;
+  });
+});
+
+function fillDecryption(useModified) {
+  if (!pair) {
+    showError("Run Encrypt & compare first.");
+    return;
+  }
+
+  showError();
+  clearDecryption();
+
+  $("decrypt-ciphertext").value = useModified
+    ? pair.modified_ciphertext
+    : pair.ciphertext;
+
+  $("decrypt-key").value = pair.key;
+}
+
+$("use-original-ciphertext").addEventListener("click", () => {
+  fillDecryption(false);
+});
+
+$("use-modified-ciphertext").addEventListener("click", () => {
+  fillDecryption(true);
+});
+
+/* Encryption / Decryption views */
+
+const oracleLayout = document.querySelector("#oracle .oracle-layout");
+const decryptForm = $("decrypt-form");
+const decryptHeading = decryptForm.previousElementSibling;
+const decryptResult = $("decrypt-result");
+
+const oracleSwitcher = document.createElement("div");
+oracleSwitcher.className = "oracle-switcher";
+oracleSwitcher.setAttribute("role", "group");
+oracleSwitcher.setAttribute("aria-label", "Oracle mode");
+
+oracleSwitcher.innerHTML = `
+  <button type="button" data-oracle-mode="encrypt"
+          aria-pressed="true" aria-controls="oracle-encryption-view">
+    Encryption
+  </button>
+  <button type="button" data-oracle-mode="decrypt"
+          aria-pressed="false" aria-controls="oracle-decryption-view">
+    Decryption
+  </button>
+`;
+
+oracleLayout.id = "oracle-encryption-view";
+oracleLayout.before(oracleSwitcher);
+
+const decryptionView = document.createElement("div");
+decryptionView.id = "oracle-decryption-view";
+decryptionView.className = "decryption-layout";
+decryptionView.hidden = true;
+
+const decryptionCard = document.createElement("article");
+decryptionCard.className = "panel";
+
+const decryptionHelp = document.createElement("p");
+decryptionHelp.className = "note";
+decryptionHelp.textContent =
+  "Enter a ciphertext and its AES-128 key, or load either ciphertext " +
+  "from your latest encryption comparison.";
+
+decryptionCard.append(decryptHeading, decryptionHelp, decryptForm);
+
+const recoveredCard = document.createElement("article");
+recoveredCard.className = "panel";
+
+const recoveredHeading = document.createElement("h2");
+recoveredHeading.textContent = "Decryption result";
+
+const recoveredEmpty = document.createElement("p");
+recoveredEmpty.className = "note";
+recoveredEmpty.textContent =
+  "Decrypt a ciphertext to display its recovered plaintext here.";
+
+recoveredCard.append(recoveredHeading, recoveredEmpty, decryptResult);
+decryptionView.append(decryptionCard, recoveredCard);
+oracleLayout.after(decryptionView);
+
+function selectOracleMode(mode) {
+  const decrypting = mode === "decrypt";
+
+  oracleLayout.hidden = decrypting;
+  decryptionView.hidden = !decrypting;
+
+  oracleSwitcher.querySelectorAll("button").forEach(button => {
+    button.setAttribute(
+      "aria-pressed",
+      String(button.dataset.oracleMode === mode)
+    );
+  });
+
+  const heading = document.querySelector("#oracle .page-heading");
+
+  heading.querySelector(".eyebrow").textContent =
+    decrypting ? "DECRYPTION ORACLE" : "ENCRYPTION COMPARISON";
+
+  heading.querySelector("h1").textContent =
+    decrypting
+      ? "Recover the original plaintext."
+      : "One bit. A different ciphertext.";
+
+  heading.querySelector("p").textContent =
+    decrypting
+      ? "Decrypt one ciphertext block using the same key used for encryption."
+      : "Encrypt an original plaintext and its modified version using the same AES-128 key.";
+
+  showError();
+}
+
+oracleSwitcher.addEventListener("click", event => {
+  const button = event.target.closest("[data-oracle-mode]");
+  if (button) selectOracleMode(button.dataset.oracleMode);
+});
+
+new MutationObserver(() => {
+  recoveredEmpty.hidden = !decryptResult.hidden;
+}).observe(decryptResult, {
+  attributes: true,
+  attributeFilter: ["hidden"]
+});
