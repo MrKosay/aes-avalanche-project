@@ -62,9 +62,6 @@ class PairResponse(BaseModel):
     changed_bits: int
     avalanche_percentage: float
 
-
-# This router is the integration boundary for your teammate's oracle.
-# The pair endpoint is a working reference adapter, using PyCryptodome.
 oracle = APIRouter(prefix='/api/oracle', tags=['Oracle integration'])
 
 
