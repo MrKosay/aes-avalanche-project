@@ -62,6 +62,7 @@ class PairResponse(BaseModel):
     changed_bits: int
     avalanche_percentage: float
 
+
 oracle = APIRouter(prefix='/api/oracle', tags=['Oracle integration'])
 
 
